@@ -1,0 +1,67 @@
+Job ID: 4509013
+Job name: assignment1
+Node: iris-111
+Partition: batch
+Number of nodes: 1
+Number of tasks: 1
+CPUs per task: 8
+Memory per node: 32000 MB
+Number of GPUs: 
+GPU devices: 
+Start time: Sun Oct 12 15:56:02 CEST 2025
+Working directory: /home/users/jesquivelmarxen/machine-learning-on-hpcs/assignment1
+
+
+Preparing grid for heatmap...
+Starting benchmarks...
+
+Running benchmark: n_samples=10000, n_features=10
+ n_samples: 10000, n_features: 10: 0.0023 seconds 
+
+Running benchmark: n_samples=10000, n_features=50
+ n_samples: 10000, n_features: 50: 0.0063 seconds 
+
+Running benchmark: n_samples=10000, n_features=100
+ n_samples: 10000, n_features: 100: 0.0079 seconds 
+
+Running benchmark: n_samples=10000, n_features=1000
+ n_samples: 10000, n_features: 1000: 0.1067 seconds 
+
+Running benchmark: n_samples=100000, n_features=10
+ n_samples: 100000, n_features: 10: 0.0102 seconds 
+
+Running benchmark: n_samples=100000, n_features=50
+ n_samples: 100000, n_features: 50: 0.0379 seconds 
+
+Running benchmark: n_samples=100000, n_features=100
+ n_samples: 100000, n_features: 100: 0.0694 seconds 
+
+Running benchmark: n_samples=100000, n_features=1000
+ n_samples: 100000, n_features: 1000: 0.9248 seconds 
+
+Running benchmark: n_samples=500000, n_features=10
+ n_samples: 500000, n_features: 10: 0.0491 seconds 
+
+Running benchmark: n_samples=500000, n_features=50
+ n_samples: 500000, n_features: 50: 0.1863 seconds 
+
+Running benchmark: n_samples=500000, n_features=100
+ n_samples: 500000, n_features: 100: 0.3398 seconds 
+
+Running benchmark: n_samples=500000, n_features=1000
+ n_samples: 500000, n_features: 1000: 4.5810 seconds 
+
+Running benchmark: n_samples=1000000, n_features=10
+ n_samples: 1000000, n_features: 10: 0.0966 seconds 
+
+Running benchmark: n_samples=1000000, n_features=50
+ n_samples: 1000000, n_features: 50: 0.3762 seconds 
+
+Running benchmark: n_samples=1000000, n_features=100
+ n_samples: 1000000, n_features: 100: 0.6872 seconds 
+
+Running benchmark: n_samples=1000000, n_features=1000
+ n_samples: 1000000, n_features: 1000: 9.1469 seconds 
+
+
+Job completed at: Sun Oct 12 15:57:36 CEST 2025

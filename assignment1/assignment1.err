@@ -1,0 +1,60 @@
+
+Currently Loaded Modules:
+  1) env/release/default                            (S)
+  2) compiler/GCCcore/13.2.0
+  3) lib/zlib/1.2.13-GCCcore-13.2.0
+  4) tools/binutils/2.40-GCCcore-13.2.0
+  5) compiler/GCC/13.2.0
+  6) numlib/OpenBLAS/0.3.24-GCC-13.2.0
+  7) lib/FlexiBLAS/3.3.1-GCC-13.2.0
+  8) numlib/FFTW/3.3.10-GCC-13.2.0
+  9) toolchain/gfbf/2023b
+ 10) tools/bzip2/1.0.8-GCCcore-13.2.0
+ 11) devel/ncurses/6.4-GCCcore-13.2.0
+ 12) lib/libreadline/8.2-GCCcore-13.2.0
+ 13) lang/Tcl/8.6.13-GCCcore-13.2.0
+ 14) devel/SQLite/3.43.1-GCCcore-13.2.0
+ 15) tools/XZ/5.4.4-GCCcore-13.2.0
+ 16) lib/libffi/3.4.4-GCCcore-13.2.0
+ 17) system/OpenSSL/1.1
+ 18) lang/Python/3.11.5-GCCcore-13.2.0
+ 19) tools/cffi/1.15.1-GCCcore-13.2.0
+ 20) tools/cryptography/41.0.5-GCCcore-13.2.0
+ 21) tools/virtualenv/20.24.6-GCCcore-13.2.0
+ 22) lang/Python-bundle-PyPI/2023.10-GCCcore-13.2.0
+ 23) data/scikit-learn/1.4.0-gfbf-2023b
+ 24) lib/libpng/1.6.40-GCCcore-13.2.0
+ 25) lib/Brotli/1.1.0-GCCcore-13.2.0
+ 26) vis/freetype/2.13.2-GCCcore-13.2.0
+ 27) tools/expat/2.5.0-GCCcore-13.2.0
+ 28) tools/util-linux/2.39-GCCcore-13.2.0
+ 29) vis/fontconfig/2.14.2-GCCcore-13.2.0
+ 30) devel/xorg-macros/1.20.0-GCCcore-13.2.0
+ 31) system/libpciaccess/0.17-GCCcore-13.2.0
+ 32) vis/X11/20231019-GCCcore-13.2.0
+ 33) vis/Tk/8.6.13-GCCcore-13.2.0
+ 34) lang/Tkinter/3.11.5-GCCcore-13.2.0
+ 35) lang/NASM/2.16.01-GCCcore-13.2.0
+ 36) lib/libjpeg-turbo/3.0.1-GCCcore-13.2.0
+ 37) vis/jbigkit/2.1-GCCcore-13.2.0
+ 38) tools/gzip/1.13-GCCcore-13.2.0
+ 39) lib/lz4/1.9.4-GCCcore-13.2.0
+ 40) lib/zstd/1.5.5-GCCcore-13.2.0
+ 41) system/libdeflate/1.19-GCCcore-13.2.0
+ 42) lib/LibTIFF/4.6.0-GCCcore-13.2.0
+ 43) lib/giflib/5.2.1-GCCcore-13.2.0
+ 44) lib/libwebp/1.3.2-GCCcore-13.2.0
+ 45) lib/OpenJPEG/2.5.0-GCCcore-13.2.0
+ 46) vis/LittleCMS/2.15-GCCcore-13.2.0
+ 47) vis/Pillow/10.2.0-GCCcore-13.2.0
+ 48) math/Qhull/2020.2-GCCcore-13.2.0
+ 49) vis/matplotlib/3.8.2-gfbf-2023b
+ 50) lib/pybind11/2.11.1-GCCcore-13.2.0
+ 51) lang/SciPy-bundle/2023.11-gfbf-2023b
+ 52) bio/Seaborn/0.13.2-gfbf-2023b
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
