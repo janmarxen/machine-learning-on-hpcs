@@ -1,19 +1,31 @@
-#!/bin/bash
+#!/bin/bash -l
 #SBATCH --job-name=assignment2
 #SBATCH --output=assignment2.out
 #SBATCH --error=assignment2.err
 #SBATCH --time=01:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
+#SBATCH --nodes=5
+#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-socket=1
+#SBATCH --cpus-per-task=16
 
-# Load required modules (customize as needed)
-# module load python/3.9
+# TODO: Explain the previous job specification clearly!
+# Load required modules 
+module load data/scikit-learn
+module load vis/matplotlib
+module load bio/Seaborn/0.13.2-gfbf-2023b
+module load mpi/OpenMPI
+module load lib/mpi4py/3.1.5-gompi-2023b
 
-# Activate virtual environment if needed
-# source venv/bin/activate
+# Install xgboost in virtual environment
+./install_xgboost.sh
 
-# Run your code here
-echo "Running assignment2..."
-# python main.py
+# Activate virtual environment 
+source xgboost_env/bin/activate
+
+# Run code 
+# Naive contiguous assignment (original behavior)
+# srun python xgboost_single_hyper.py --distribution contiguous
+# Round-robin (default, best for typical cases)
+srun python xgboost_single_hyper.py --distribution roundrobin
+# Shuffle with seed
+# srun python xgboost_single_hyper.py --distribution shuffle --seed 42
