@@ -1,0 +1,43 @@
+# Python virtual environments
+xgboost_env/
+**/xgboost_env/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# SLURM output files
+*.out
+*.err
+
+# CSV result files (optional - uncomment if you want to track results)
+# *.csv
+
+# macOS
+.DS_Store
+
+# Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
