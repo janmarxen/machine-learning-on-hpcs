@@ -29,6 +29,13 @@ __pycache__/
 *.out
 *.err
 
+# Dataset and hyperparameter search results
+train.csv.gz
+**/train.csv.gz
+**/hyperparameter_search_results.csv
+**/hyperparameter_search_results*.csv
+**/hyperparameter_search_results*.csv
+
 # CSV result files (optional - uncomment if you want to track results)
 # *.csv
 
