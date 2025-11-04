@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Project Overview</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <div class="chapter-intro">
+            <div class="chapter-number">01</div>
+            <h1>AMM Risk Lab: Real-World ML on HPCs</h1>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+            <div class="tech-card">
+                <h3>🎯 Project Goal</h3>
+                <p style="font-size: 1.2rem; line-height: 1.5;">
+                    Use <span class="highlight">Monte Carlo simulations</span> powered by <span class="tech-highlight">DDP-trained Transformers</span> 
+                    to model liquidity provider risk and train <span class="warning-highlight">RL agents</span> 
+                    for Uniswap V3 strategy optimization
+                </p>
+            </div>
+            
+            <div class="tech-card">
+                <h3>🏗️ Infrastructure</h3>
+                <ul style="list-style: none; padding: 0; font-size: 1.1rem;">
+                    <li>• <strong>Model:</strong> Transformers for Time Series</li>
+                    <li>• <strong>HPC:</strong> Jülich Supercomputing Centre (JSC) - Jureca</li>
+                    <li>• <strong>Training:</strong> PyTorch DDP</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="architecture-diagram" style="margin-top: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 15px; align-items: center;">
+                <div class="tech-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196f3; padding: 15px;">
+                    <h4 style="color: #1976d2; margin-bottom: 8px; text-align: center; font-size: 1rem;">🏭 Pretraining</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 0.85rem; line-height: 1.4; color: #1976d2;">
+                        <li style="margin-bottom: 4px;">📊 ~500GB HDF5 | +1M pools</li>
+                        <li style="margin-bottom: 4px;">🔢 ~100 time series features</li>
+                        <li style="margin-bottom: 4px;">🎯 Learn general AMM patterns</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 8px; padding: 5px; background: rgba(33, 150, 243, 0.15); border-radius: 4px; font-size: 0.8rem;">
+                        <span style="color: #1976d2; font-weight: bold;">Foundation Model</span>
+                    </div>
+                </div>
+                
+                <div style="font-size: 2rem; color: #2a5298; font-weight: bold;">→</div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4caf50; padding: 15px;">
+                    <h4 style="color: #388e3c; margin-bottom: 8px; text-align: center; font-size: 1rem;">🎯 Finetuning</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 0.85rem; line-height: 1.4; color: #388e3c;">
+                        <li style="margin-bottom: 4px;">📊 Few MB | Single pool</li>
+                        <li style="margin-bottom: 4px;">🔢 Same ~100 features</li>
+                        <li style="margin-bottom: 4px;">🎯 Adapt to specific pool</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 8px; padding: 5px; background: rgba(76, 175, 80, 0.15); border-radius: 4px; font-size: 0.8rem;">
+                        <span style="color: #388e3c; font-weight: bold;">Specialized Model</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

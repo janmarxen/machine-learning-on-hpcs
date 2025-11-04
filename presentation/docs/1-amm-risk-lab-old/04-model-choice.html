@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Model Choice</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Model Architecture Choice</h2>
+        
+        <div class="center-content">
+            
+            <div class="tech-card" style="max-width: 850px; margin: 40px auto; background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%); border-left: 4px solid #2196f3; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #1976d2; margin-bottom: 25px; text-align: center; font-size: 1.4rem;">🤖 Why Transformers over RNNs?</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">⚡</div>
+                        <h4 style="color: #1976d2; margin-bottom: 10px;">Parallelization</h4>
+                        <p style="font-size: 1rem; color: #495057; line-height: 1.5;">RNNs sequential computation painfully slow on supercomputers</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📈</div>
+                        <h4 style="color: #1976d2; margin-bottom: 10px;">Scalability</h4>
+                        <p style="font-size: 1rem; color: #495057; line-height: 1.5;">Multiple attention heads vs single hidden state</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">🔗</div>
+                        <h4 style="color: #1976d2; margin-bottom: 10px;">Long Dependencies</h4>
+                        <p style="font-size: 1rem; color: #495057; line-height: 1.5;">Less vanishing gradients problem</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 50px auto 40px;">
+                <div style="font-size: 2rem; color: #6c757d;">↓</div>
+                <div style="font-size: 1.2rem; color: #495057; margin-top: 10px;">But standard transformers/regressors struggle with...</div>
+            </div>
+            
+            <div class="tech-card" style="max-width: 750px; margin: 40px auto; background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%); border-left: 4px solid #ffc107; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #856404; margin-bottom: 25px; text-align: center; font-size: 1.4rem;">💡 Why Zero-Inflated Transformers?</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📊</div>
+                        <h4 style="color: #856404; margin-bottom: 10px;">Data Challenge</h4>
+                        <p style="font-size: 1.1rem; color: #856404; line-height: 1.5;"><span class="highlight">Bimodal distribution</span><br>Zero values + High spikes</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">🎯</div>
+                        <h4 style="color: #856404; margin-bottom: 10px;">Solution</h4>
+                        <p style="font-size: 1.1rem; color: #856404; line-height: 1.5;"><span class="tech-highlight">Explicit zero-inflation modeling</span><br>Outperforms standard transformers</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

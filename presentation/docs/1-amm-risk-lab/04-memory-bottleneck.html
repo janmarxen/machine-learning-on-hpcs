@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Memory Bottleneck Analysis</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Memory Bottleneck: The Attention Problem</h2>
+        
+        <div class="two-column" style="margin-top: 30px;">
+            <div>
+                <h3>Why We Hit the Wall</h3>
+                <div class="tech-card" style="background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border-left: 4px solid #dc3545; padding: 20px; margin-top: 15px;">
+                    <h4 style="color: #721c24; margin-bottom: 15px;">(Flash)Attention Memory Complexity</h4>
+                    <p style="font-size: 1.3rem; text-align: center; color: #721c24; font-family: 'Times New Roman', serif; margin: 15px 0;">
+                        <strong>𝒪(𝐵 × ℎ × 𝑛² × 𝑑)</strong>
+                    </p>
+                    <p style="font-size: 0.95rem; color: #721c24;">
+                        Where: B=batch, h=heads, n=sequence length, d=hidden dim per head
+                    </p>
+                </div>
+                
+                <ul style="margin-top: 20px; font-size: 1.05rem; line-height: 1.6;">
+                    <li>GPU utilization plateaus at <strong>~15%</strong></li>
+                    <li>Cannot increase batch size further</li>
+                    <li>40GB GPU memory limit hit</li>
+                    <li>Full attention matrices too large</li>
+                </ul>
+                
+            </div>
+            
+            <div>
+                <h3>The Deep Dive Journey</h3>
+                
+                <div style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #28a745;">
+                    <h4 style="color: #155724; margin-bottom: 15px;">💡 Key Questions That Emerged</h4>
+                    <ul style="font-size: 1rem; color: #155724; line-height: 1.7;">
+                        <li><strong>Can CPU help</strong> with bigger effective batches by offloading work?</li>
+                        <li><strong>Can we use idle CPU cores</strong> to speed up training?</li>
+                        <li><strong>Can we be more energy efficient</strong> by utilizing all reserved resources?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 12px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 1.3rem; color: #856404; font-weight: 600;">
+                This led me to explore: <span class="highlight">Hybrid CPU/GPU Attention</span> ⟹
+            </p>
+        </div>
+    </div>
+</body>
+</html>

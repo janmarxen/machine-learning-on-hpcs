@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Memory Bottleneck Analysis</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Memory Bottleneck Analysis</h2>
+        
+        <div class="two-column" style="margin-top: 30px;">
+            <div>
+                <h3>Memory Bottleneck Symptoms</h3>
+                <ul>
+                    <li>Attention matrices: <span class="metric" style="font-family: 'Times New Roman', serif; font-size: 1.2rem;">𝒪(𝐵 × ℎ × 𝑛²)</span></li>
+                    <li>GPU utilization plateaus at ~15%</li>
+                    <li>Cannot increase batch size further</li>
+                    <li><span class="warning-highlight">FlashAttention</span> avoids storing full matrices, reduces HBM traffic (÷𝑀)</li>
+                </ul>
+                
+                <div class="performance-card" style="margin-top: 20px;">
+                    <span class="performance-number">40GB</span>
+                    <small>GPU Memory Limit Hit</small>
+                </div>
+            </div>
+            
+            <div>
+                <h3>The Attention Deep Dive</h3>
+                
+                <ul style="margin-top: 20px;">
+                    <li>Started implementing <span class="tech-highlight">custom CUDA kernels</span></li>
+                    <li>Studied FlashAttention algorithm</li>
+                    <li>Questioned: Can CPU help with <span class="tech-highlight">bigger effective batches / sequence lengths</span> by getting some work?</li>
+                    <li>Questioned: Can we <span class="tech-highlight">use idle CPU cores</span> to speedup training?</li>
+                    <li>Questioned: Can we make training more energy efficient by <span class="tech-highlight">properly utilizing what we reserved?</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

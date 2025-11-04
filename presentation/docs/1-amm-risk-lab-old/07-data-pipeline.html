@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Data Pipeline Architecture</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Data Pipeline Architecture</h2>
+        
+        <div class="center-content">
+            <div class="architecture-diagram" style="max-width: 1000px; margin: 30px auto; font-family: monospace; font-size: 1.3rem; line-height: 1.7; background: #f8f9fa; padding: 30px; border-radius: 12px; border-left: 6px solid #5cb85c;">
+                <div style="margin-bottom: 35px;">
+                    <strong style="font-size: 1.5rem; color: #2a5298;">1. Data Ingestion (External → Scratch)</strong><br>
+                    <div style="margin: 15px 0; padding-left: 20px;">
+                        📊 Uniswap V3 Subgraph API<br>
+                        ↓ <span class="tech-highlight">run_data_download.py</span> (parallel fetching)<br>
+                        ↓ Convert to <span class="metric">HDF5</span> format (limited Imnodes)<br>
+                        📁 <code style="background: #e9ecef; padding: 4px 8px; border-radius: 4px;">/p/scratch/training2529/uniswap_pools_data.h5</code> 
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 35px;">
+                    <strong style="font-size: 1.5rem; color: #2a5298;">2. Feature Engineering (Per-Pool Scaling)</strong><br>
+                    <div style="margin: 15px 0; padding-left: 20px;">
+                        <span class="highlight">PyTorch LPsDataset class</span> → Individual StandardScaler per pool<br>
+                        Generate features: price/liquidity/volume returns + rolling statistics<br>
+                    </div>
+                </div>
+                
+                <div>
+                    <strong style="font-size: 1.5rem; color: #2a5298;">3. Distributed Loading Challenge</strong><br>
+                    <div style="margin: 15px 0; padding-left: 20px;">
+                        🚫 Standard <code>DistributedSampler</code> → <span class="warning-highlight">Memory overflow</span><br>
+                        ✅ Custom MPI-aware data loader → Per-node HDF5 chunks<br>
+                        📤 <span class="tech-highlight">distributed_utils.py</span> → High-level MPI and PyTorch communication utilities
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

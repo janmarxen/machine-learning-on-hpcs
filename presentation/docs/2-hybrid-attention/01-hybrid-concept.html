@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Concept</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <div class="chapter-intro">
+            <div class="chapter-number">02</div>
+            <h1>Hybrid CPU/GPU Attention</h1>
+            <p style="font-size: 1.3rem; color: #2a5298; margin-top: 15px;">
+                Leveraging Heterogeneous Compute for Transformer Training
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 25px;">
+            <div>
+                <div class="tech-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 4px solid #2196f3; padding: 20px; margin-bottom: 20px;">
+                    <h3 style="color: #1976d2; margin-bottom: 15px;">💡 Core Hypothesis</h3>
+                    <div style="font-size: 1rem; line-height: 1.8; color: #1976d2;">
+                        <strong>CPU:</strong> <span class="highlight">Sparse Attention</span><br>
+                        <strong>GPU:</strong> <span class="tech-highlight">Dense Attention</span> + Feed-forward<br>
+                        <strong>Result:</strong> <span class="warning-highlight">Full Resource Utilization</span>
+                    </div>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 4px solid #28a745; padding: 15px;">
+                    <h4 style="color: #155724; margin-bottom: 10px; font-size: 0.95rem;">✓ Why This Works</h4>
+                    <ul style="color: #155724; font-size: 0.9rem; margin: 0; padding-left: 15px; line-height: 1.6;">
+                        <li>CPU: <strong>1024 GB</strong> vs GPU: <strong>40GB</strong> RAM</li>
+                        <li>CPU excels at <strong>sparse</strong> patterns</li>
+                        <li><strong>No PCIe bottleneck</strong> w/ block-diagonal</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div>
+                <div class="architecture-diagram" style="background: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                    <div style="font-family: monospace; font-size: 0.9rem; line-height: 1.5;">
+                        <strong>CPU (128 cores)</strong><br>
+                        ├── 32 cores → Data Loading<br>
+                        └── 96 cores → <span class="highlight">Sparse Attention</span><br><br>
+                        <strong>GPU (A100)</strong><br>
+                        ├── Dense Attention (FlashAttention)<br>
+                        ├── Feed-forward layers<br>
+                        └── Parameter updates
+                    </div>
+                </div>
+                
+                <div class="performance-card">
+                    <span class="performance-number" style="font-size: 2.2rem;">1:1</span>
+                    <small>CPU:GPU Compute Ratio (No multi-GPU competition)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

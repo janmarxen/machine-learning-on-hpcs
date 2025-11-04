@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Future SoC</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Future SoC Architectures Make This Even Better</h2>
+        
+        <div class="center-content">
+            <div style="text-align: center; margin: 10px auto 20px;">
+            </div>
+            
+            <div style="max-width: 1050px; margin: 0 auto;">
+                <!-- Grace Hopper Image -->
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="images/grace-hopper-overview.png" alt="Grace Hopper Architecture" 
+                         style="max-width: 75%; height: auto; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+                </div>
+                
+                <!-- Comparison -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div class="tech-card" style="background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border-left: 4px solid #dc3545; padding: 15px;">
+                        <h4 style="color: #721c24; margin-bottom: 8px; text-align: center; font-size: 0.9rem;">❌ Traditional PCIe</h4>
+                        <p style="color: #721c24; font-size: 0.85rem; margin: 0; text-align: center; line-height: 1.4;">
+                            <strong>1-10 μs setup</strong> per transfer<br>
+                            Separate memory spaces
+                        </p>
+                    </div>
+                    
+                    <div class="tech-card" style="background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); border-left: 4px solid #17a2b8; padding: 15px;">
+                        <h4 style="color: #0c5460; margin-bottom: 8px; text-align: center; font-size: 0.9rem;">✅ Unified Memory</h4>
+                        <p style="color: #0c5460; font-size: 0.85rem; margin: 0; text-align: center; line-height: 1.4;">
+                            <strong>CPU + GPU</strong> share same HBM<br>
+                            No explicit transfers
+                        </p>
+                    </div>
+                    
+                    <div class="tech-card" style="background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); border-left: 4px solid #17a2b8; padding: 15px;">
+                        <h4 style="color: #0c5460; margin-bottom: 8px; text-align: center; font-size: 0.9rem;">✅ Cache Coherent</h4>
+                        <p style="color: #0c5460; font-size: 0.85rem; margin: 0; text-align: center; line-height: 1.4;">
+                            <strong>Fast CPU-GPU</strong> sync<br>
+                            Hardware managed
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Benefits -->
+            <div style="max-width: 850px; margin: 0 auto;">
+                <div class="tech-card" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 4px solid #28a745; padding: 20px;">
+                    <h3 style="color: #155724; margin-bottom: 12px; text-align: center; font-size: 1.05rem;">🎯 Why This Makes Hybrid Attention Perfect</h3>
+                    
+                    <ul style="color: #155724; font-size: 1rem; line-height: 1.6; text-align: left;">
+                        <li>✓ <strong>Nearly instantaneous</strong> CPU sparse → GPU dense transfers</li>
+                        <li>✓ <strong>No PCIe bottleneck:</strong> Eliminate setup latency entirely</li>
+                        <li>✓ <strong>Unified programming model:</strong> Seamless heterogeneous compute</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="font-size: 1.15rem; color: #1e3c72; font-weight: 600;">
+                        → Hybrid attention may become a <span class="highlight">first-class architecture pattern</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

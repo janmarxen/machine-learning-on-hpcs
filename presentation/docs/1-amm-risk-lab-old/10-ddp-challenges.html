@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - DDP Training Challenges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Distributed Data Parallel (DDP) Training Challenges</h2>
+        
+        <h3 style="margin-top: 30px;">Profiling Results: The Underutilization Problem</h3>
+        
+        <div class="two-column">
+            <div>
+                <div class="tech-card">
+                    <h4>GPU Analysis</h4>
+                    <ul>
+                        <li><span class="warning-highlight">Small model size (hidden dim and heads)</span> → compute underutilization</li>
+                        <li>Tried increasing batch size</li>
+                        <li>Hit <span class="metric">GPU memory limits</span></li>
+                        <li>Memory-bound rather than compute-bound</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div>
+                <div class="tech-card">
+                    <h4>CPU Analysis</h4>
+                    <ul>
+                        <li>Mostly <span class="highlight">data loading only</span></li>
+                        <li>Diminishing returns with more DataLoader workers</li>
+                        <li>Massive CPU cores left idle</li>
+                        <li>Opportunity for hybrid compute!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <img src="images/starving_gpus.png" alt="GPU Underutilization Visualization" 
+                 style="max-width: 550px; width: 85%; height: auto; border-radius: 8px; background-color: white;"
+                 onerror="console.error('Image failed to load:', this.src); this.style.border='2px solid red';">
+        </div>
+    </div>
+</body>
+</html>

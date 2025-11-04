@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helmholtz AI Technical Presentation - Jan Marxen</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .slide-frame {
+            width: 90vw;
+            max-width: 1280px;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            background: white;
+            margin: 40px auto;
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #5cb85c 0%, #4cae4c 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .nav-arrows {
+            display: flex;
+            gap: 8px;
+            margin-left: 24px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .arrow-btn {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #5cb85c 0%, #4cae4c 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow-btn:hover {
+            background: linear-gradient(135deg, #4cae4c 0%, #449d44 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .arrow-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .slide-counter {
+            text-align: center;
+            background: linear-gradient(135deg, #5cb85c 0%, #4cae4c 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            display: inline-block;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        .chapter-indicator {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .chapter-badge {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0 5px;
+            display: inline-block;
+        }
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 6px;
+            border-radius: 3px;
+            margin: 15px auto 30px;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #5cb85c 0%, #4cae4c 100%);
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .slide-title {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-title" id="slideTitle">Hardware-Software Co-Design: From GPU Bottlenecks to Non-von-Neumann Computing</div>
+    
+    <div class="chapter-indicator">
+        <span class="chapter-badge" id="chapterBadge">Introduction</span>
+    </div>
+    
+    <div class="slide-counter" id="slideCounter">1 / 27</div>
+    
+    <div class="nav-arrows">
+        <button class="arrow-btn" onclick="previousSlide()" id="prevBtn">‹</button>
+        <button class="arrow-btn" onclick="nextSlide()" id="nextBtn">›</button>
+    </div>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 6.25%"></div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-btn" onclick="goToChapter(1)" style="background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);">Chapter 1</button>
+        <button class="nav-btn" onclick="goToChapter(2)" style="background: linear-gradient(135deg, #3d6bb3 0%, #2a5298 100%);">Chapter 2</button>
+    </div>
+    
+    <div id="slideContainer"></div>
+    
+    <script>
+        const slides = [
+            // Introduction (0-1)
+            { file: 'title.html', chapter: 'Introduction', title: '' },
+            { file: 'introduction.html', chapter: 'Introduction', title: 'Why Co-Design Matters' },
+            
+            // Chapter 1: AMM Risk Lab (2-13)
+            { file: '1-amm-risk-lab/01-chapter-intro.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'AMM Risk Lab Project' },
+            { file: '1-amm-risk-lab/02-system-overview.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'System Overview' },
+            { file: '1-amm-risk-lab/03-training-pipeline.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Training Pipeline Strategy' },
+            { file: '1-amm-risk-lab/04-model-choice.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Model Architecture Choice' },
+            { file: '1-amm-risk-lab/05-technical-overview.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Infrastructure & Hardware' },
+            { file: '1-amm-risk-lab/06-node-architecture.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Node Architecture Details' },
+            { file: '1-amm-risk-lab/07-data-pipeline.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Data Pipeline Architecture' },
+            { file: '1-amm-risk-lab/08-distributed-training.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Distributed Training Data Flows' },
+            { file: '1-amm-risk-lab/09-performance-analysis.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Performance Analysis' },
+            { file: '1-amm-risk-lab/10-ddp-challenges.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'DDP Training Challenges' },
+            { file: '1-amm-risk-lab/11-compute-vs-memory.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Compute vs Memory Bound' },
+            { file: '1-amm-risk-lab/12-memory-bottleneck-analysis.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Memory Bottleneck Analysis' },
+            
+            // Chapter 2: Hybrid Attention (14-21)
+            { file: '2-hybrid-attention/01-chapter-intro.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Hybrid CPU/GPU Attention' },
+            { file: '2-hybrid-attention/02-core-concept.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Core Concept & Advantages' },
+            { file: '2-hybrid-attention/03-processing-flow.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Processing Flow Diagram' },
+            { file: '2-hybrid-attention/04-design-tradeoffs.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Design Tradeoffs & PCIe Analysis' },
+            { file: '2-hybrid-attention/05-cpu-attention.html', chapter: 'Chapter 2: Hybrid Attention', title: 'CPU Block Sparse Attention' },
+            { file: '2-hybrid-attention/06-future-soc.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Future SoC Architectures' },
+            { file: '2-hybrid-attention/07-discovery.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Novel Discovery (Almost!)' },
+            { file: '2-hybrid-attention/08-implementation-future.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Implementation & Future Work' },
+            
+            // Closing (22)
+            { file: 'closing.html', chapter: 'Closing', title: 'Thank You' }
+        ];
+        
+        let currentSlide = 0;
+        const slideCounter = document.getElementById('slideCounter');
+        const slideContainer = document.getElementById('slideContainer');
+        const chapterBadge = document.getElementById('chapterBadge');
+        const slideTitle = document.getElementById('slideTitle');
+        const progressFill = document.getElementById('progressFill');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateUI() {
+            const slide = slides[currentSlide];
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            chapterBadge.textContent = slide.chapter;
+            slideTitle.textContent = slide.title;
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            
+            // Update button states
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        function showSlide(n) {
+            currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+            const slide = slides[currentSlide];
+            
+            fetch(slide.file)
+                .then(response => response.text())
+                .then(html => {
+                    // Extract only the content inside <body>
+                    const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+                    slideContainer.innerHTML = bodyMatch ? bodyMatch[1] : html;
+                    updateUI();
+                    
+                    // Auto-scroll to center the slide content
+                    setTimeout(() => {
+                        slideContainer.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start',
+                            inline: 'nearest'
+                        });
+                    }, 100);
+                })
+                .catch(error => {
+                    console.error('Error loading slide:', error);
+                    slideContainer.innerHTML = '<div class="slide"><h1>Error loading slide</h1></div>';
+                    updateUI();
+                });
+        }
+        
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        function goToChapter(chapterNum) {
+            const chapterStarts = [2, 14]; // Starting slides for each chapter
+            if (chapterNum >= 1 && chapterNum <= 2) {
+                showSlide(chapterStarts[chapterNum - 1]);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key >= '1' && e.key <= '2') {
+                goToChapter(parseInt(e.key));
+            }
+        });
+        
+        // Initial load
+        showSlide(0);
+    </script>
+</body>
+</html>

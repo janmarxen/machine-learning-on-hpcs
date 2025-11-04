@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMM Risk Lab - Performance Problems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Performance Analysis: The Problem</h2>
+        
+        <div style="margin-top: 40px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto 50px;">
+                <div class="performance-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);">
+                    <span class="performance-number" style="font-size: 2.8rem; color: #d9534f;">~15%</span>
+                    <div style="font-size: 1.2rem; margin-top: 12px; font-weight: 600;">GPU Utilization</div>
+                    <small style="color: #721c24; margin-top: 8px; display: block; font-size: 0.9rem;">Streaming Multiprocessors underutilized</small>
+                </div>
+                <div class="performance-card" style="text-align: center; padding: 25px; background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);">
+                    <span class="performance-number" style="font-size: 2.8rem; color: #d9534f;">~8%</span>
+                    <div style="font-size: 1.2rem; margin-top: 12px; font-weight: 600;">CPU Utilization</div>
+                    <small style="color: #721c24; margin-top: 8px; display: block; font-size: 0.9rem;">Only data loading active</small>
+                </div>
+            </div>
+            
+            <div style="max-width: 850px; margin: 0 auto;">
+                <div class="tech-card" style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107; padding: 25px;">
+                    <h3 style="color: #856404; margin-bottom: 15px; text-align: center;">🔍 Root Cause Analysis</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                        <div>
+                            <h4 style="color: #856404; margin-bottom: 10px;">Compute vs Memory Bound</h4>
+                            <ul style="font-size: 1rem; color: #856404; line-height: 1.6;">
+                                <li>Model is <strong>too small</strong> for A100s</li>
+                                <li>GPU sits idle waiting for data</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #856404; margin-bottom: 10px;">DDP Challenges</h4>
+                            <ul style="font-size: 1rem; color: #856404; line-height: 1.6;">
+                                <li>Can't increase batch size further</li>
+                                <li><strong>Memory bottleneck</strong> hit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border-left: 4px solid #dc3545; padding: 20px; margin-top: 20px;">
+                    <h3 style="color: #721c24; margin-bottom: 10px; text-align: center;">The Cost of Inefficiency</h3>
+                    <ul style="font-size: 1.05rem; color: #721c24; line-height: 1.6; text-align: left;">
+                        <li>Wastes energy; Poor return on expensive HPC hardware</li>
+                        <li>Steals resources from important research tasks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

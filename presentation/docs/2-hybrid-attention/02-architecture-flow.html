@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Architecture & Flow</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Architecture & Processing Flow</h2>
+        
+        <div style="margin-top: 25px;">
+            <!-- SVG Diagram -->
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="images/hybrid_attention_flowchart.svg" 
+                     alt="Hybrid Attention Processing Flow"
+                     style="width: 100%; max-width: 950px; height: auto; border-radius: 10px;">
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 1000px; margin: 0 auto;">
+                <!-- PCIe Analysis -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107; padding: 20px;">
+                    <h3 style="color: #856404; margin-bottom: 12px; text-align: center; font-size: 1.1rem;">⚡ PCIe Transfer Analysis</h3>
+                    
+                    <div style="font-family: 'Times New Roman', serif; font-size: 1.05rem; line-height: 1.4; background: #fff; padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 12px;">
+                        <strong style="color: #856404;">𝑡<sub>total</sub> = 𝑡<sub>setup</sub> + 𝑡<sub>transfer</sub></strong>
+                    </div>
+                    
+                    <ul style="font-size: 0.95rem; color: #856404; line-height: 1.5;">
+                        <li><strong>Setup:</strong> 𝑡<sub>setup</sub> ≈ 1-10 μs</li>
+                        <li><strong>Transfer:</strong> 𝑡<sub>transfer</sub> = size/BW</li>
+                        <li><strong>Key:</strong> Minimize # of transfers</li>
+                    </ul>
+                </div>
+                
+                <!-- Key Design Tradeoffs -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); border-left: 4px solid #17a2b8; padding: 20px;">
+                    <h3 style="color: #0c5460; margin-bottom: 12px; text-align: center; font-size: 1.1rem;">🎯 Design Tradeoffs</h3>
+                    
+                    <ul style="font-size: 0.95rem; color: #0c5460; line-height: 1.6;">
+                        <li>✓ <strong>Smaller data, less accumulation</strong> → setup overhead more noticeable</li>
+                        <li>✓ <strong>Batch batching:</strong> Single large transfer (cache+dma-friendly)</li>
+                        <li>✓ <strong>Images vs Text:</strong> Effect on PCIe vs Data Loading overhead</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
