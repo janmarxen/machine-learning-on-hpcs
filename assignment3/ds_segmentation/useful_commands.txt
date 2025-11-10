@@ -1,0 +1,2 @@
+cd assignment3/ds_segmentation
+ssh iris sbatch launch_job.sh
