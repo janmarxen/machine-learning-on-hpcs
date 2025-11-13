@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Novel Discovery</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>The "Almost Novel" Discovery 😅</h2>
+        
+        <div class="architecture-diagram" style="padding: 40px; text-align: center;">
+            <h3>The Timeline of (Dis)covery</h3>
+            <div style="font-size: 1.4rem; line-height: 2; margin-top: 25px;">
+                <span class="highlight">Day 1-2:</span> "I've invented hybrid CPU/GPU attention!"<br>
+                <span class="warning-highlight">Day 3:</span> Found paper on hybrid <em>inference</em> published a month ago<br>
+                <span class="tech-highlight">Today:</span> Why training is different and better suited
+            </div>
+        </div>
+        
+        <div class="two-column">
+            <div>
+                <h3>Hybrid Inference (Existing Work)</h3>
+                <div class="challenge-list">
+                    <h4>Limitations for Inference</h4>
+                    <ul>
+                        <li><span class="metric">Latency critical</span> → communication overhead hurts</li>
+                        <li>Small batch sizes (1-32 examples). Overhead plays a significant role</li>
+                        <li>KV cache introduces additional synchronization needs</li>
+                        <li>Per-token generation speed matters most</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div>
+                <h3>Hybrid Training (My Focus)</h3>
+                <div class="benefit-list">
+                    <h4>Why Training is Better</h4>
+                    <ul>
+                        <li><span class="highlight">Large batch sizes</span> → communication overhead amortized</li>
+                        <li>Throughput over latency optimization</li>
+                        <li>More batches = more opportunities</li>
+                        <li>Memory scaling enables bigger models</li>
+                        <li><span class="tech-highlight">No KV cache limitations</span></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

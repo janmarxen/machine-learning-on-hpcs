@@ -1,0 +1,251 @@
+<svg viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Removed dotted patterns, using solid colors instead -->
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">
+    Accelerated Compute Node Architecture
+  </text>
+  
+  <!-- CPU 0 -->
+  <rect x="80" y="70" width="180" height="90" fill="#ff9800" stroke="#f57c00" stroke-width="2" rx="6"/>
+  <text x="170" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    AMD EPYC 7742
+  </text>
+  <text x="170" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    CPU 0 (64 cores)
+  </text>
+  <text x="170" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    2.25 GHz
+  </text>
+  
+  <!-- CPU 1 -->
+  <rect x="300" y="70" width="180" height="90" fill="#ff9800" stroke="#f57c00" stroke-width="2" rx="6"/>
+  <text x="390" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    AMD EPYC 7742
+  </text>
+  <text x="390" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    CPU 1 (64 cores)
+  </text>
+  <text x="390" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    2.25 GHz
+  </text>
+  
+  <!-- CPU Interconnect -->
+  <line x1="260" y1="115" x2="300" y2="115" stroke="#333" stroke-width="4"/>
+  <text x="280" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">
+    UPI/IF
+  </text>
+  
+  <!-- Memory Banks for CPU 0 -->
+  <rect x="80" y="180" width="40" height="70" fill="#e8f4fd" stroke="#2196f3" stroke-width="2" rx="4"/>
+  <text x="100" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    DDR4
+  </text>
+  <text x="100" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    128GB
+  </text>
+  <text x="100" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    4×32GB
+  </text>
+  
+  <rect x="130" y="180" width="40" height="70" fill="#e8f4fd" stroke="#2196f3" stroke-width="2" rx="4"/>
+  <text x="150" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    DDR4
+  </text>
+  <text x="150" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    128GB
+  </text>
+  <text x="150" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    4×32GB
+  </text>
+  
+  <!-- Memory Banks for CPU 1 -->
+  <rect x="390" y="180" width="40" height="70" fill="#e8f4fd" stroke="#2196f3" stroke-width="2" rx="4"/>
+  <text x="410" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    DDR4
+  </text>
+  <text x="410" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    128GB
+  </text>
+  <text x="410" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    4×32GB
+  </text>
+  
+  <rect x="440" y="180" width="40" height="70" fill="#e8f4fd" stroke="#2196f3" stroke-width="2" rx="4"/>
+  <text x="460" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    DDR4
+  </text>
+  <text x="460" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    128GB
+  </text>
+  <text x="460" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">
+    4×32GB
+  </text>
+  
+  <!-- Memory connections -->
+  <line x1="170" y1="160" x2="100" y2="180" stroke="#2196f3" stroke-width="3"/>
+  <line x1="170" y1="160" x2="150" y2="180" stroke="#2196f3" stroke-width="3"/>
+  <line x1="390" y1="160" x2="410" y2="180" stroke="#2196f3" stroke-width="3"/>
+  <line x1="390" y1="160" x2="460" y2="180" stroke="#2196f3" stroke-width="3"/>
+  
+  <!-- PCIe Root Complex -->
+  <rect x="200" y="290" width="180" height="45" fill="#9c27b0" stroke="#7b1fa2" stroke-width="2" rx="6"/>
+  <text x="290" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    PCIe Root Complex
+  </text>
+  
+  <!-- PCIe connections to CPUs -->
+  <line x1="220" y1="160" x2="240" y2="290" stroke="#9c27b0" stroke-width="4"/>
+  <line x1="340" y1="160" x2="320" y2="290" stroke="#9c27b0" stroke-width="4"/>
+  
+  <!-- GPU 0 -->
+  <rect x="60" y="380" width="140" height="90" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="6"/>
+  <text x="130" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">
+    NVIDIA A100
+  </text>
+  <text x="130" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    GPU 0
+  </text>
+  <text x="130" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    40GB HBM2e
+  </text>
+  <text x="130" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">
+    1.6TB/s
+  </text>
+  
+  <!-- GPU 1 -->
+  <rect x="220" y="380" width="140" height="90" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="6"/>
+  <text x="290" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">
+    NVIDIA A100
+  </text>
+  <text x="290" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    GPU 1
+  </text>
+  <text x="290" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    40GB HBM2e
+  </text>
+  <text x="290" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">
+    1.6TB/s
+  </text>
+  
+  <!-- GPU 2 -->
+  <rect x="380" y="380" width="140" height="90" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="6"/>
+  <text x="450" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">
+    NVIDIA A100
+  </text>
+  <text x="450" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    GPU 2
+  </text>
+  <text x="450" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    40GB HBM2e
+  </text>
+  <text x="450" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">
+    1.6TB/s
+  </text>
+  
+  <!-- GPU 3 -->
+  <rect x="540" y="380" width="140" height="90" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="6"/>
+  <text x="610" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">
+    NVIDIA A100
+  </text>
+  <text x="610" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    GPU 3
+  </text>
+  <text x="610" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+    40GB HBM2e
+  </text>
+  <text x="610" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">
+    1.6TB/s
+  </text>
+  
+  <!-- PCIe connections to GPUs -->
+  <line x1="220" y1="335" x2="130" y2="380" stroke="#9c27b0" stroke-width="4"/>
+  <line x1="250" y1="335" x2="290" y2="380" stroke="#9c27b0" stroke-width="4"/>
+  <line x1="310" y1="335" x2="450" y2="380" stroke="#9c27b0" stroke-width="4"/>
+  <line x1="340" y1="335" x2="610" y2="380" stroke="#9c27b0" stroke-width="4"/>
+  
+  <!-- PCIe lane labels -->
+  <text x="175" y="365" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">PCIe 4.0 x16</text>
+  <text x="265" y="365" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">PCIe 4.0 x16</text>
+  <text x="375" y="365" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">PCIe 4.0 x16</text>
+  <text x="475" y="365" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">PCIe 4.0 x16</text>
+  
+  <!-- NVLink connections between GPUs -->
+  <line x1="200" y1="425" x2="220" y2="425" stroke="#00ff00" stroke-width="5"/>
+  <line x1="360" y1="425" x2="380" y2="425" stroke="#00ff00" stroke-width="5"/>
+  <line x1="520" y1="425" x2="540" y2="425" stroke="#00ff00" stroke-width="5"/>
+  
+  <!-- Cross connections -->
+  <path d="M 130 470 Q 210 500 290 470" stroke="#00ff00" stroke-width="4" fill="none"/>
+  <path d="M 290 470 Q 370 500 450 470" stroke="#00ff00" stroke-width="4" fill="none"/>
+  <path d="M 450 470 Q 530 500 610 470" stroke="#00ff00" stroke-width="4" fill="none"/>
+  
+  <!-- NVLink labels -->
+  <text x="210" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#00ff00">NVLink</text>
+  <text x="370" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#00ff00">NVLink</text>
+  <text x="530" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#00ff00">NVLink</text>
+  
+  <!-- InfiniBand Cards -->
+  <rect x="720" y="150" width="140" height="70" fill="#e91e63" stroke="#c2185b" stroke-width="2" rx="6"/>
+  <text x="790" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">
+    InfiniBand HDR
+  </text>
+  <text x="790" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">
+    ConnectX-6
+  </text>
+  <text x="790" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    200Gb/s
+  </text>
+  
+  <rect x="720" y="240" width="140" height="70" fill="#e91e63" stroke="#c2185b" stroke-width="2" rx="6"/>
+  <text x="790" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">
+    InfiniBand HDR
+  </text>
+  <text x="790" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">
+    ConnectX-6
+  </text>
+  <text x="790" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    200Gb/s
+  </text>
+  
+  <!-- PCIe connections to InfiniBand -->
+  <line x1="380" y1="315" x2="720" y2="185" stroke="#9c27b0" stroke-width="4"/>
+  <line x1="380" y1="315" x2="720" y2="275" stroke="#9c27b0" stroke-width="4"/>
+  
+  <!-- External Network Connection -->
+  <rect x="880" y="200" width="100" height="50" fill="#607d8b" stroke="#455a64" stroke-width="2" rx="6"/>
+  <text x="930" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Network
+  </text>
+  
+  <line x1="860" y1="185" x2="880" y2="225" stroke="#e91e63" stroke-width="4"/>
+  <line x1="860" y1="275" x2="880" y2="225" stroke="#e91e63" stroke-width="4"/>
+  
+  <!-- Legend moved to bottom -->
+  <rect x="50" y="550" width="900" height="120" fill="#f5f5f5" stroke="#ddd" stroke-width="2" rx="8"/>
+  <text x="500" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">
+    Connection Types
+  </text>
+  
+  <!-- Legend items in two rows -->
+  <line x1="80" y1="605" x2="120" y2="605" stroke="#2196f3" stroke-width="4"/>
+  <text x="130" y="610" font-family="Arial, sans-serif" font-size="12" fill="#333">DDR4 Memory (3200 MHz)</text>
+  
+  <line x1="350" y1="605" x2="390" y2="605" stroke="#9c27b0" stroke-width="4"/>
+  <text x="400" y="610" font-family="Arial, sans-serif" font-size="12" fill="#333">PCIe 4.0 (~32GB/s per x16)</text>
+  
+  <line x1="650" y1="605" x2="690" y2="605" stroke="#00ff00" stroke-width="4"/>
+  <text x="700" y="610" font-family="Arial, sans-serif" font-size="12" fill="#333">NVLink 3.0 (~600GB/s)</text>
+  
+  <line x1="80" y1="635" x2="120" y2="635" stroke="#e91e63" stroke-width="4"/>
+  <text x="130" y="640" font-family="Arial, sans-serif" font-size="12" fill="#333">InfiniBand HDR (200Gb/s)</text>
+  
+  <line x1="350" y1="635" x2="390" y2="635" stroke="#333" stroke-width="4"/>
+  <text x="400" y="640" font-family="Arial, sans-serif" font-size="12" fill="#333">CPU Interconnect (UPI/Infinity)</text>
+  
+  <text x="500" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">
+    Total Memory: 512GB DDR4 + 160GB HBM2e  |  GPU-GPU: Full NVLink mesh topology
+  </text>
+</svg>

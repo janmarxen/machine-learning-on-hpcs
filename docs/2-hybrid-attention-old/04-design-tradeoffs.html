@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Design Tradeoffs</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Design Tradeoffs & Implementation Considerations</h2>
+        
+        <div class="center-content">
+            
+            <!-- Rhetorical Question -->
+            <div style="text-align: center; margin: 15px auto 25px;">
+                <div style="font-size: 1.2rem; color: #666; font-style: italic;">
+                    How do we balance CPU and GPU workloads for optimal performance?
+                </div>
+            </div>
+
+            <!-- Key Tradeoffs Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 15px auto;">
+                
+                <!-- Minimize Setup -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border-left: 4px solid #dc3545; padding: 12px;">
+                    <h3 style="color: #721c24; margin-bottom: 10px; text-align: center; font-size: 0.95rem;">🚀 Minimize Setup</h3>
+                    <ul style="color: #721c24; font-size: 0.8rem; line-height: 1.3; margin: 0; padding-left: 12px;">
+                        <li>• <strong>Smaller data, less accumulation</strong> → setup overhead more noticeable</li>
+                        <li>• Single large > multiple small. Adapt learning rates (local minima)</li>
+                        <li>• Need to efficiently serialize (sparse) attention outputs + new batch</li>
+                    </ul>
+                </div>
+                
+                <!-- Synchronization -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107; padding: 12px;">
+                    <h3 style="color: #856404; margin-bottom: 10px; text-align: center; font-size: 0.95rem;">⚖️ Synchronization</h3>
+                    <ul style="color: #856404; font-size: 0.8rem; line-height: 1.3; margin: 0; padding-left: 12px;">
+                        <li>• Batch sizes need <strong>careful tuning</strong></li>
+                        <li>• Should <strong>converge simultaneously</strong></li>
+                        <li>• Hardware-dependent sweet spot. Software optimization needed.</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <!-- PCIe Transfer Implications -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 15px auto;">
+                
+                <!-- Avoid Load Balancing -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%); border-left: 4px solid #6c757d; padding: 12px;">
+                    <h3 style="color: #495057; margin-bottom: 10px; text-align: center; font-size: 0.95rem;">⚙️ Static Partitioning</h3>
+                    <ul style="color: #495057; font-size: 0.8rem; line-height: 1.3; margin: 0; padding-left: 12px;">
+                        <li>• <strong>No fancy load balancing</strong></li>
+                        <li>• Avoid CPU-GPU communication</li>
+                        <li>• Predictable distribution</li>
+                    </ul>
+                </div>
+                
+                <!-- Application Dependent -->
+                <div class="tech-card" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 4px solid #28a745; padding: 12px;">
+                    <h3 style="color: #155724; margin-bottom: 10px; text-align: center; font-size: 0.95rem;">🎯 Application Dependent</h3>
+                    <ul style="color: #155724; font-size: 0.8rem; line-height: 1.3; margin: 0; padding-left: 12px;">
+                        <li>• <strong>Disk vs Memory</strong> loading</li>
+                        <li>• Data type: Video/Text/Audio</li>
+                        <li>• Effect on PCIe vs Data Loading overhead</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

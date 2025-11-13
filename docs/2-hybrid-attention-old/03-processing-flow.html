@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention - Processing Flow</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="slide active">
+        <h2>Hybrid Attention Processing Flow</h2>
+        
+        <div class="center-content">
+            
+            <!-- Hybrid Attention Flow Diagram -->
+            <div class="tech-card" style="max-width: 1200px; margin: 20px auto;">
+                
+                <!-- SVG Diagram -->
+                <div style="text-align: center;">
+                    <img src="images/hybrid_attention_flowchart.svg" 
+                         alt="Hybrid Attention Processing Flow Timeline"
+                         style="width: 100%; max-width: 1000px; height: auto; border-radius: 10px; background: #f8f9fa; padding: 20px;">
+                </div>
+                
+            </div>
+            
+            <!-- PCIe Transfer Time Analysis -->
+            <div class="tech-card" style="max-width: 1000px; margin: 15px auto; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107;">
+                <h3 style="color: #856404; margin-bottom: 15px; text-align: center; font-size: 1.1rem;">⚡ PCIe Transfer Time Analysis</h3>
+                
+                <div style="font-family: 'Times New Roman', serif; font-size: 1rem; line-height: 1.4; background: #fff; padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="margin-bottom: 10px; font-size: 1.3rem;">
+                        <strong style="color: #856404;">𝑡<sub>total</sub> = 𝑡<sub>setup</sub> + 𝑡<sub>transfer</sub></strong>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 10px 0; font-size: 1.1rem;">
+                        <div>
+                            <strong style="color: #856404;">Setup:</strong><br>
+                            𝑡<sub>setup</sub> ≈ 1-10 μs
+                        </div>
+                        <div>
+                            <strong style="color: #856404;">Transfer:</strong><br>
+                            𝑡<sub>transfer</sub> = size/BW
+                        </div>
+                        <div>
+                            <strong style="color: #856404;">Question:</strong><br>
+                            𝑡<sub>setup</sub> / 𝑡<sub>total</sub> scaling?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

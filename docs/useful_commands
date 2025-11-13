@@ -1,0 +1,4 @@
+cd "/home/jan/Documents/Career_Academics/EUMaster4HPC/Courses/Semester_3/ML-HPC/machine-learning-on-hpcs/presentation/docs"
+npx http-server . -p 8000
+# or for live reload:
+npx live-server --port=8000

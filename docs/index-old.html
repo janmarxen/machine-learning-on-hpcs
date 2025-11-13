@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helmholtz AI Technical Presentation - Jan Marxen (10min Condensed)</title>
+    <title>Helmholtz AI Technical Presentation - Jan Marxen</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .slide-frame {
@@ -139,7 +139,7 @@
         <span class="chapter-badge" id="chapterBadge">Introduction</span>
     </div>
     
-    <div class="slide-counter" id="slideCounter">1 / 12</div>
+    <div class="slide-counter" id="slideCounter">1 / 27</div>
     
     <div class="nav-arrows">
         <button class="arrow-btn" onclick="previousSlide()" id="prevBtn">‹</button>
@@ -147,7 +147,7 @@
     </div>
     
     <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 7.7%"></div>
+        <div class="progress-fill" id="progressFill" style="width: 6.25%"></div>
     </div>
     
     <div class="navigation">
@@ -162,20 +162,32 @@
             // Introduction (0-1)
             { file: 'title.html', chapter: 'Introduction', title: '' },
             { file: 'introduction.html', chapter: 'Introduction', title: 'Why Co-Design Matters' },
-
-            // Chapter 1: AMM Risk Lab - CONDENSED (2-6)
-            { file: '1-amm-risk-lab/01-project-overview.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Project Overview & Architecture' },
-            { file: '1-amm-risk-lab/02-distributed-training.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Distributed Training Architecture' },
-            { file: '1-amm-risk-lab/03-performance-problems.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Performance Problems & Bottlenecks' },
-            { file: '1-amm-risk-lab/04-memory-bottleneck.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Memory Bottleneck Deep Dive' },
-
-            // Chapter 2: Hybrid Attention - CONDENSED (7-10)
-            { file: '2-hybrid-attention/01-hybrid-concept.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Hybrid CPU/GPU Attention Concept' },
-            { file: '2-hybrid-attention/02-architecture-flow.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Architecture & Processing Flow' },
-            { file: '2-hybrid-attention/04-implementation-tradeoffs.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Results & Future Work' },
-            { file: '2-hybrid-attention/05-future-socs.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Implementation Tradeoffs (Future SoC)' },
-
-            // Closing (11)
+            
+            // Chapter 1: AMM Risk Lab (2-13)
+            { file: '1-amm-risk-lab/01-chapter-intro.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'AMM Risk Lab Project' },
+            { file: '1-amm-risk-lab/02-system-overview.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'System Overview' },
+            { file: '1-amm-risk-lab/03-training-pipeline.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Training Pipeline Strategy' },
+            { file: '1-amm-risk-lab/04-model-choice.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Model Architecture Choice' },
+            { file: '1-amm-risk-lab/05-technical-overview.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Infrastructure & Hardware' },
+            { file: '1-amm-risk-lab/06-node-architecture.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Node Architecture Details' },
+            { file: '1-amm-risk-lab/07-data-pipeline.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Data Pipeline Architecture' },
+            { file: '1-amm-risk-lab/08-distributed-training.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Distributed Training Data Flows' },
+            { file: '1-amm-risk-lab/09-performance-analysis.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Performance Analysis' },
+            { file: '1-amm-risk-lab/10-ddp-challenges.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'DDP Training Challenges' },
+            { file: '1-amm-risk-lab/11-compute-vs-memory.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Compute vs Memory Bound' },
+            { file: '1-amm-risk-lab/12-memory-bottleneck-analysis.html', chapter: 'Chapter 1: AMM Risk Lab', title: 'Memory Bottleneck Analysis' },
+            
+            // Chapter 2: Hybrid Attention (14-21)
+            { file: '2-hybrid-attention/01-chapter-intro.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Hybrid CPU/GPU Attention' },
+            { file: '2-hybrid-attention/02-core-concept.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Core Concept & Advantages' },
+            { file: '2-hybrid-attention/03-processing-flow.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Processing Flow Diagram' },
+            { file: '2-hybrid-attention/04-design-tradeoffs.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Design Tradeoffs & PCIe Analysis' },
+            { file: '2-hybrid-attention/05-cpu-attention.html', chapter: 'Chapter 2: Hybrid Attention', title: 'CPU Block Sparse Attention' },
+            { file: '2-hybrid-attention/06-future-soc.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Future SoC Architectures' },
+            { file: '2-hybrid-attention/07-discovery.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Novel Discovery (Almost!)' },
+            { file: '2-hybrid-attention/08-implementation-future.html', chapter: 'Chapter 2: Hybrid Attention', title: 'Implementation & Future Work' },
+            
+            // Closing (22)
             { file: 'closing.html', chapter: 'Closing', title: 'Thank You' }
         ];
         
@@ -244,7 +256,7 @@
         }
         
         function goToChapter(chapterNum) {
-            const chapterStarts = [2, 7]; // Starting slides for each chapter
+            const chapterStarts = [2, 14]; // Starting slides for each chapter
             if (chapterNum >= 1 && chapterNum <= 2) {
                 showSlide(chapterStarts[chapterNum - 1]);
             }
