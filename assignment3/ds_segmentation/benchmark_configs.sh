@@ -20,6 +20,7 @@ echo "[1/3] Submitting: 1 node, 2 GPUs" | tee -a "$SUMMARY_FILE"
 JOB1=$(sbatch --parsable \
     --job-name=ds_1n2g \
     --nodes=1 \
+    --ntasks=2 \
     --ntasks-per-node=2 \
     --gres=gpu:2 \
     --output="$RESULTS_DIR/ds_1n2g_${TIMESTAMP}.out" \
@@ -40,6 +41,7 @@ echo "[2/3] Submitting: 2 nodes, 2 GPUs per node" | tee -a "$SUMMARY_FILE"
 JOB2=$(sbatch --parsable \
     --job-name=ds_2n2g \
     --nodes=2 \
+    --ntasks=4 \
     --ntasks-per-node=2 \
     --gres=gpu:2 \
     --output="$RESULTS_DIR/ds_2n2g_${TIMESTAMP}.out" \
@@ -60,6 +62,7 @@ echo "[3/3] Submitting: 2 nodes, 4 GPUs per node" | tee -a "$SUMMARY_FILE"
 JOB3=$(sbatch --parsable \
     --job-name=ds_2n4g \
     --nodes=2 \
+    --ntasks=8 \
     --ntasks-per-node=4 \
     --gres=gpu:4 \
     --output="$RESULTS_DIR/ds_2n4g_${TIMESTAMP}.out" \

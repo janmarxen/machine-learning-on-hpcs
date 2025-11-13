@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+
+\title{DeepSpeed Distributed Image Segmentation}
+\author{Jan Esquivel Marxen}
+\date{November 13, 2025}
+
+\begin{document}
+\maketitle
+
+\section{Problem Statement}
+The task is to implement distributed training of a UNet semantic segmentation model on CIFAR-10 data using DeepSpeed's ZeRO optimization. The model consists of encoder and decoder blocks with skip connections, trained to perform pixel-wise classification. Three distributed configurations are benchmarked: single-node with 2 GPUs, two-node with 2 GPUs per node, and two-node with 4 GPUs per node.
+
+\section{Implementation}
+The solution uses DeepSpeed with ZeRO Stage 2 optimization for gradient and optimizer state partitioning across GPUs. The training script initializes distributed communication using PyTorch's distributed backend with OpenMPI, where rank assignment is handled through SLURM environment variables. Each GPU processes batches independently with gradients synchronized via all-reduce operations.
+
+Key implementation aspects:
+\begin{itemize}
+    \item \textbf{Data parallelism:} Training data is partitioned across workers using DistributedSampler
+    \item \textbf{Environment handling:} SLURM's \texttt{OMPI\_COMM\_WORLD\_RANK} maps to global rank, with \texttt{LOCAL\_RANK=0} per task as \texttt{CUDA\_VISIBLE\_DEVICES} remaps GPUs
+    \item \textbf{GPU allocation:} \texttt{--gpus-per-task=1} ensures proper device mapping in multi-node setup
+\end{itemize}
+
+\section{Migration to MeluXina}
+Initially developed for the UniLu IRIS cluster, the code was migrated to MeluXina due to excessive GPU queue times on IRIS that hindered debugging. This migration required:
+\begin{itemize}
+    \item Loading different modules: \texttt{PyTorch/2.3.0-foss-2024a-CUDA-12.6.0} and \texttt{OpenMPI/5.0.3-GCC-13.3.0}
+    \item Adjusting rank initialization to handle MeluXina's OpenMPI environment variables
+    \item Moving Python virtual environment to scratch space due to home directory file quota limits
+    \item Deleting \texttt{OMPI\_COMM\_WORLD\_LOCAL\_RANK} to avoid conflicts with DeepSpeed's initialization
+\end{itemize}
+
+\section{Benchmark Results}
+Table~\ref{tab:results} shows training times for 50 epochs across different GPU configurations. All runs achieved $\sim$95.7\% pixel accuracy on the validation set.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Configuration} & \textbf{Nodes} & \textbf{GPUs} & \textbf{Training Time (s)} & \textbf{Total Time (s)} \\
+\midrule
+1n2g & 1 & 2 & 115 & 120 \\
+2n2g & 2 & 4 & 106 & 111 \\
+2n4g & 2 & 8 & 107 & 112 \\
+\bottomrule
+\end{tabular}
+\caption{DeepSpeed training performance on MeluXina cluster. Training time excludes setup overhead (environment initialization, data loading). Total time includes all job execution.}
+\label{tab:results}
+\end{table}
+
+\noindent The results show strong scaling from 1 node (115s) to 2 nodes (106-107s), achieving a 7-8\% speedup. Increasing from 4 to 8 GPUs provides minimal additional benefit, likely due to communication overhead dominating over computation for this relatively small model and dataset.
+
+\end{document}

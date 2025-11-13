@@ -80,13 +80,33 @@ def prepare_data(X, y, validation_split=0.2, random_state=42):
 # Main execution
 def main():
     # Initialize DeepSpeed distributed backend
-    # When using srun, we need to set LOCAL_RANK based on SLURM_LOCALID
-    if "LOCAL_RANK" not in os.environ and "SLURM_LOCALID" in os.environ:
-        os.environ["LOCAL_RANK"] = os.environ["SLURM_LOCALID"]
-    if "RANK" not in os.environ and "SLURM_PROCID" in os.environ:
-        os.environ["RANK"] = os.environ["SLURM_PROCID"]
-    if "WORLD_SIZE" not in os.environ and "SLURM_NTASKS" in os.environ:
-        os.environ["WORLD_SIZE"] = os.environ["SLURM_NTASKS"]
+    # When using srun with --gpus-per-task=1, CUDA_VISIBLE_DEVICES is set to show only one GPU
+    # So LOCAL_RANK should always be 0, but we need to ensure OpenMPI variables don't conflict
+    
+    # Unset OpenMPI local rank to avoid conflicts with --gpus-per-task=1
+    # This is necessary because CUDA_VISIBLE_DEVICES remaps GPUs to start from 0
+    if "OMPI_COMM_WORLD_LOCAL_RANK" in os.environ:
+        del os.environ["OMPI_COMM_WORLD_LOCAL_RANK"]
+    
+    if "LOCAL_RANK" not in os.environ:
+        # With --gpus-per-task=1, each task only sees GPU 0 via CUDA_VISIBLE_DEVICES
+        os.environ["LOCAL_RANK"] = "0"
+    
+    if "RANK" not in os.environ:
+        if "OMPI_COMM_WORLD_RANK" in os.environ:
+            os.environ["RANK"] = os.environ["OMPI_COMM_WORLD_RANK"]
+        elif "SLURM_PROCID" in os.environ:
+            os.environ["RANK"] = os.environ["SLURM_PROCID"]
+        else:
+            os.environ["RANK"] = "0"
+    
+    if "WORLD_SIZE" not in os.environ:
+        if "OMPI_COMM_WORLD_SIZE" in os.environ:
+            os.environ["WORLD_SIZE"] = os.environ["OMPI_COMM_WORLD_SIZE"]
+        elif "SLURM_NTASKS" in os.environ:
+            os.environ["WORLD_SIZE"] = os.environ["SLURM_NTASKS"]
+        else:
+            os.environ["WORLD_SIZE"] = "1"
     
     deepspeed.init_distributed()
     _local_rank = int(os.environ.get("LOCAL_RANK", "0"))

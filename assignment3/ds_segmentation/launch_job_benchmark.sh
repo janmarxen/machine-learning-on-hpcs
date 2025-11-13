@@ -73,12 +73,13 @@ echo "=========================="
 
 # Run DeepSpeed training using srun (no deepspeed launcher needed)
 # srun will handle the distributed execution across nodes
+# --gpus-per-task=1 ensures each task gets exactly 1 GPU and sets CUDA_VISIBLE_DEVICES correctly
 echo ""
 echo "Starting training..."
 echo "========================================"
 
 TRAIN_START=$(date +%s)
-srun --mem=0 --export=ALL python cifar_segmentation_ds.py --deepspeed --deepspeed_config ds_config.json
+srun --mem=0 --gpus-per-task=1 --export=ALL python cifar_segmentation_ds.py --deepspeed --deepspeed_config ds_config.json
 TRAIN_END=$(date +%s)
 
 # Calculate elapsed time
