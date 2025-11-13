@@ -1,0 +1,7 @@
+======================================
+DeepSpeed Benchmark Run: 20251113_164349
+======================================
+
+[1/3] Submitting: 1 node, 2 GPUs
+  Job ID: 3722772
+  Waiting for job 3722772 to complete...

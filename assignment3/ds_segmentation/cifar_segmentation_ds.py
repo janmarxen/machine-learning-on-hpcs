@@ -10,18 +10,15 @@ from deepspeed.accelerator import get_accelerator
 from sklearn.model_selection import train_test_split
 from unet_model import UNet
 
-#module load data/scikit-learn
-#module load vis/matplotlib
-#module load bio/Seaborn/0.13.2-gfbf-2023b
 
-## For AION (to use CPU)
-#module load ai/PyTorch/2.3.0-foss-2023b
-## For IRIS (to use GPU)
-#module load ai/PyTorch/2.3.0-foss-2023b-CUDA-12.6.0
+
+# Get the directory of this script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(script_dir, 'data')
 
 # Load CIFAR-10 data
-X = np.load('/work/projects/bigdata_sets/cifar-10.1/cifar10.1_v4_data.npy')
-y = np.load('/work/projects/bigdata_sets/cifar-10.1/cifar10.1_v4_labels.npy')
+X = np.load(os.path.join(data_dir, 'cifar10.1_v4_data.npy'))
+y = np.load(os.path.join(data_dir, 'cifar10.1_v4_labels.npy'))
 
 print(f"Data shape: {X.shape}")
 print(f"Labels shape: {y.shape}")
@@ -83,8 +80,16 @@ def prepare_data(X, y, validation_split=0.2, random_state=42):
 # Main execution
 def main():
     # Initialize DeepSpeed distributed backend
+    # When using srun, we need to set LOCAL_RANK based on SLURM_LOCALID
+    if "LOCAL_RANK" not in os.environ and "SLURM_LOCALID" in os.environ:
+        os.environ["LOCAL_RANK"] = os.environ["SLURM_LOCALID"]
+    if "RANK" not in os.environ and "SLURM_PROCID" in os.environ:
+        os.environ["RANK"] = os.environ["SLURM_PROCID"]
+    if "WORLD_SIZE" not in os.environ and "SLURM_NTASKS" in os.environ:
+        os.environ["WORLD_SIZE"] = os.environ["SLURM_NTASKS"]
+    
     deepspeed.init_distributed()
-    _local_rank = int(os.environ.get("LOCAL_RANK"))
+    _local_rank = int(os.environ.get("LOCAL_RANK", "0"))
     get_accelerator().set_device(_local_rank)
 
     # Prepare data
